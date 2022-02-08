@@ -1,0 +1,15 @@
+{
+    "name": "faydaen/tapir",
+    "authors": [
+        {
+            "name": "Evgeniy Panov",
+            "email": "panov-eo@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Tapir\\": "app"
+        }
+    }
+}

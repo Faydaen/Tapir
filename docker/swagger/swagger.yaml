@@ -1,0 +1,170 @@
+swagger: "2.0"
+info:
+  description: "This is a sample of Tapir API "
+  version: "1.0.0"
+  title: "Tapir's Cars API"
+host: "localhost:8280"
+basePath: "/v1"
+tags:
+- name: "cars"
+  description: "Find new and used cars"
+
+
+paths:
+  /cars/find/{page}:
+    get:
+      tags:
+      - "cars"
+      summary: "Filter cars"
+      description: "Returns a collection of cars, with pagination"
+      parameters:
+      - name: "page"
+        in: "path"
+        required: true
+        type: "integer"
+        default: 1
+        format: "int64"
+        
+      - name: "hash"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "brand"
+        in: "query"
+        required: false
+        type: "string"  
+      - name: "model"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "vin"
+        in: "query"
+        required: false
+        type: "string"  
+      - name: "body_type"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "engine_type"
+        in: "query"
+        required: false
+        type: "string"  
+      - name: "drive_type"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "gearbox_type"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "year_from"
+        in: "query"
+        required: false
+        type: "integer"
+        format: "int64"
+      - name: "year_to"
+        in: "query"
+        required: false
+        type: "integer"
+        format: "int64"
+      - name: "price_less"
+        in: "query"
+        required: false
+        type: "integer"
+        format: "int64"
+      - name: "price_more"
+        in: "query"
+        required: false
+        type: "integer"
+        format: "int64"     
+      - name: "mileage_from"
+        in: "query"
+        required: false
+        type: "integer"
+        format: "int64"
+      - name: "mileage_to"
+        in: "query"
+        required: false
+        type: "integer"
+        format: "int64"              
+      - name: "owner_count_from"
+        in: "query"
+        required: false
+        type: "integer"
+        format: "int64"
+      - name: "owner_count_to"
+        in: "query"
+        required: false
+        type: "integer"
+        format: "int64" 
+      - name: "is_used"
+        in: "query"
+        required: false
+        type: "boolean"
+        
+        
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "object"
+            properties:
+                pagination:
+                  type: "object"
+                  properties:
+                      current_page:
+                          type: "integer"
+                          format: "int64"
+                      total_pages:
+                          type: "integer"
+                          format: "int64"
+                cars:
+                    type: "array"
+                    items:
+                      $ref: "#/definitions/Car"    
+
+
+
+
+definitions:
+  Car:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      hash:
+        type: "string"
+      brand:
+        type: "string"
+      model:
+        type: "string"
+      vin:
+        type: "string"
+      body_type:
+        type: "string"
+      engine_type:
+        type: "string"
+      drive_type:
+        type: "string"
+      gearbox_type:
+        type: "string"        
+      year:
+        type: "integer"
+        format: "int32"
+      price:
+        type: "integer"
+        format: "int32"
+      mileage:
+        type: "integer"
+        format: "int32"
+      owner_count:
+        type: "integer"
+        format: "int32"
+      is_used:
+        type: "boolean"
+        format: "int32"           
+
+
+
+
